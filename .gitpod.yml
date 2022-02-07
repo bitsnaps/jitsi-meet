@@ -1,0 +1,16 @@
+image:
+  file: .gitpod.Dockerfile
+
+ports:
+  - port: 8080
+    onOpen: open-preview
+
+tasks:
+  - before: >
+      echo "before..."
+  - init: |
+      echo "init..."
+    command: |
+      echo "commands..."
+      service nginx start
+  - command: gp await-port 8080 && gp preview "$(gp url 8080)/"
